@@ -18,6 +18,9 @@
 v-text,就是解决这个问题的
 
 使用属性v-test="message" 替代 {{ message }}
+
+需要注意的是：在生产环境中动态渲染HTML是非常危险的，因为容易导致XSS攻击。所以
+只能在可信的内容上使用v-html，永远不要在用户提交和可操作的网页上使用。
 -->
 <script type="text/javascript">
     var app = new Vue({

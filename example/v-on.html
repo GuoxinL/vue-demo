@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>v-on</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>v-on</h1>
+<hr>
+<!-- 计分器 -->
+<div id="app">
+    本厂比赛得分：{{ score }}
+    <p>
+        <button v-on:click="addScore">加分</button>
+        <button @click="subScore">减分</button>
+        <!--
+        v-model 绑定数据源，后面讲
+         -->
+        <input type="text" @keyup.enter.13="onEnter" v-model="score2">
+    </p>
+</div>
+<script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            score: 0,
+            score2: 1
+        },
+        methods: {
+            addScore: function () {
+                this.score++
+            },
+            subScore: function () {
+                this.score--
+            },
+            onEnter: function () {
+                // score2 的值是字符串的需要转换
+                this.score = this.score + parseInt(this.score2)
+            }
+        }
+    })
+</script>
+</body>
+</html>

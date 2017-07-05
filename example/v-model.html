@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-model 数据源绑定</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>v-model 数据源绑定</h1>
+<hr>
+<!-- 双向数据绑定 -->
+<div id="app">
+    <p>原始数据{{ message }}</p>
+    <h3>双向数据绑定 v-model</h3>
+    <p><input type="text" v-model="message"></p></p>
+    <h3>双向数据绑定-懒加载</h3>
+    <p>当光标离开更新 v-model.lazy</p>
+    <p><input type="text" v-model.lazy="message"></p></p>
+    <h3>双向数据绑定-必须是数字</h3>
+    <p>当光标离开更新 v-model.number</p>
+    <p><input type="text" v-model.number="message"></p></p>
+    <h3>双向数据绑定-去除空格</h3>
+    <p>当光标离开更新 v-model.trim</p>
+    <p><input type="text" v-model.trim="message"></p></p>
+    <hr>
+    <h3>文本域</h3>
+    <textarea cols="70" rows="3" v-model="message"></textarea>
+    <hr>
+    <h3>多选框绑定一个值</h3>
+    <label v-for="isTrue">{{ isTrue }}</label>
+    <label for="ck">isTrue</label><input id="ck" type="checkbox" v-model="isTrue"/>
+    <hr>
+    <h3>多选框绑定数组</h3>
+    <label>Guoxin Liu
+        <input type="checkbox" value="Guoxin Liu" v-model="names"/>
+    </label>
+    <label>Xinguo Liu
+        <input type="checkbox" value="Xinguo Liu" v-model="names"/>
+    </label>
+    <label>Liuguo Xin
+        <input type="checkbox" value="Liuguo Xin" v-model="names"/>
+    </label>
+    <p>{{ names }}</p>
+    <hr>
+    <h3>小知识点-lable标签的隐式联系和显示联系</h3>
+    显式的联系：
+    <p>&lt;label for=&quot;SSN&quot;&gt;Social Security Number:&lt;/label&gt;</p>
+    <p>&lt;input type=&quot;text&quot; name=&quot;SocSecNum&quot; id=&quot;SSn&quot; /&gt;</p>
+
+    隐式的联系：
+    <p>&lt;label&gt;Date of Birth: &lt;input type=&quot;text&quot; name=&quot;DofB&quot; /&gt;&lt;/label&gt;</p>
+    <hr>
+    <h3>单选框绑定数组</h3>
+    <p>你选择的性别是：{{ sex }}</p>
+    <label>男
+        <input type="radio" value="男" v-model="sex"/>
+    </label>
+    <label>女
+        <input type="radio" value="女" v-model="sex"/>
+    </label>
+</div>
+<script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Fuck!!!!',
+            isTrue: true,
+            names: [],
+            sex: '男'
+        }
+    })
+</script>
+</body>
+</html>
