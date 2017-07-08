@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue.set-全局操作</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>vue.set-全局操作</h1>
+<hr>
+<!-- {{ message }} 魔板输出 -->
+<div id="app">
+    {{ count }} : {{ book }}
+    <ul>
+        <li v-for="item in arr">{{ item }}</li>
+    </ul>
+</div>
+<p>
+    <button onclick="add()">add</button>
+</p>
+<script type="text/javascript">
+    // 三种方法修改outDate数据
+    function add() {
+//        Vue.set(outDate, 'count', 2) // 方法1
+//        app.count++ //方法2
+//        outDate.count++ // 方法3
+//        app.arr[1] = 'ddd' //如果只改变下标JavaScript是无法监听到的
+        Vue.set(app.arr,1,'ddddd')
+    }
+    var outDate = {
+//        count: 1,
+//        book: '十万个为什么'
+        arr: [
+            'aaa', 'bbb', 'ccc'
+        ]
+    };
+    // 知识点1 在构造器外声明数据
+    var app = new Vue({
+        el: '#app',
+        data: outDate
+    })
+</script>
+</body>
+</html>

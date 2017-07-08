@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Component 组件props 属性设置</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>Component 组件props 属性设置</h1>
+<hr>
+<div id="app">
+    <panda v-bind:from-here="message"></panda>
+    <!-- <panda :from-here="message"></panda> -->
+</div>
+<hello></hello>
+<hello></hello>
+<script type="text/javascript">
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'China.....'
+        },
+        // 局部组件
+        components: {
+            'panda': {
+                template: `
+                    <div style="color: blue">Panda from {{ fromHere }}</div>
+                `,
+                // 如果标签属性中带 “-”则需要用驼峰命名法
+                props: ['fromHere'] // 定义属性我们需要用props选项 在组件的模板里读出属性值只需要用插值的形式，例如{{ here }}.
+            }
+        },
+    })
+</script>
+</body>
+</html>
