@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Methods Option 方法选项</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>Methods Option 方法选项</h1>
+<hr>
+<div id="app">
+    {{ a }} $event = mouseEvent
+    <p>
+        <button @click="add(111,$event)">add</button>
+    </p>
+    <p>
+        @click.native 自己声明的组件调用构造器中的方法
+        <btn @click.native="add(2)"></btn>
+    </p>
+</div>
+外部add调用app构造器中的方法
+<button onclick="app.add(11)">外部add</button>
+<script type="text/javascript">
+    var btn = {
+        template: `<button>组件add</button>`
+    }
+    var app = new Vue({
+        el: '#app',
+        data: {
+            a: 1
+        },
+        components: {
+            'btn': btn
+        },
+        methods: {
+            add: function (num, event) {
+                if (num != null) {
+                    console.log(num);
+                    this.a += num
+                }
+                this.a++
+                console.log(event)
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Extends Option扩展选项</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>Extends Option扩展选项</h1>
+<hr>
+<div id="app">
+    ${ number } {{ number }}
+    <p>
+        <button @click="add">add</button>
+    </p>
+</div>
+<script type="text/javascript">
+    var extendsObj = {
+        updated: function () {
+            console.log('我是扩展的update')
+        },
+        methods: {
+            // 在外部扩展已有的自定义方法是无效的，只可以定义新的方法
+            add: function () {
+                console.log('我是扩展的方法！！');
+                this.number += 3
+            }
+        },
+    };
+    var app = new Vue({
+        el: '#app',
+        data: {
+            number: 1
+        },
+        methods: {
+            add: function () {
+                console.log('我是源生的方法！！');
+                this.number += 3
+            }
+        },
+        updated: function () {
+            console.log('我是源生的updated')
+        },
+        extends: extendsObj,
+        //delimiters的作用是改变我们插值的符号。Vue默认的插值是双大括号{{}}。但有时我们会有需求更改这个插值的形式。
+        delimiters: ['${', '}']
+    })
+</script>
+</body>
+</html>
