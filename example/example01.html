@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实例入门-实例属性</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <script type="text/javascript" src="../assets/js/jquery-3.2.1.js"></script>
+</head>
+<body>
+<h1>实例入门-实例属性</h1>
+<hr>
+<div id="app">
+    {{ message }}
+</div>
+<script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Fuck!!!!'
+        },
+        methods: {
+            add:function () {
+                console.log('构造器内部add方法')
+            }
+        },
+        mounted:function () {
+            $('#app').html('我是JQuery')
+        }
+    })
+    app.add();
+</script>
+</body>
+</html>
