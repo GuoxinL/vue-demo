@@ -10,10 +10,15 @@
 <h1>实例和内置组件</h1>
 <hr>
 <div id="app">
-    {{message}}
 </div>
 <p>
     <button onclick="destroy()">拆卸</button>
+</p>
+<p>
+    <button onclick="reload()">更新</button>
+</p>
+<p>
+    <button onclick="tick()">更改数据</button>
 </p>
 <script type="text/javascript">
     var hehe = Vue.extend({
@@ -22,11 +27,31 @@
             return {
                 message: 'Hello Fuck!!!'
             }
+        },
+        mounted: function () {
+            console.log("mounted 被创建")
+        },
+        destroyed: function () {
+            console.log("destroyed!!!")
+        },
+        updated:function () {
+            console.log("updated!!!")
         }
     });
     var vm = new hehe().$mount("#app")
     function destroy() {
+        console.log("vm 被销毁")
         vm.$destroy()
+    }
+    function reload() {
+        console.log("vm 更新")
+        vm.$forceUpdate();
+    }
+    function tick() {
+        vm.message='Update Message Info'
+        vm.$nextTick(function () {
+            console.log('Message被更新')
+        })
     }
 </script>
 </body>
